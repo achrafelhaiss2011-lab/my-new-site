@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
+    <head>
+    <meta charset="UTF-8">
+    <title>منصة أشرف التعليمية</title>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/face_mesh"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
@@ -162,6 +167,37 @@
     }
     setupCamera();
 </script>
+    <script>
+    const videoElement = document.getElementById('webcam');
+
+    const faceMesh = new FaceMesh({locateFile: (file) => {
+        return `https://cdn.jsdelivr.net/npm/@mediapipe/face_mesh/${file}`;
+    }});
+
+    faceMesh.setOptions({ maxNumFaces: 1, refineLandmarks: true, minDetectionConfidence: 0.5 });
+
+    faceMesh.onResults((results) => {
+        if (results.multiFaceLandmarks && results.multiFaceLandmarks.length > 0) {
+            const nose = results.multiFaceLandmarks[0][1]; // تتبع نقطة الأنف
+            
+            // إذا كان الأنف في الجزء العلوي من الكاميرا
+            if (nose.y < 0.4) { 
+                window.scrollBy(0, -20); // اصعد للأعلى
+            } 
+            // إذا كان الأنف في الجزء السفلي من الكاميرا
+            else if (nose.y > 0.6) { 
+                window.scrollBy(0, 20); // انزل للأسفل
+            }
+        }
+    });
+
+    const camera = new Camera(videoElement, {
+        onFrame: async () => { await faceMesh.send({image: videoElement}); },
+        width: 640, height: 480
+    });
+    camera.start();
+</script>
 </body>
 
 </html>
+
