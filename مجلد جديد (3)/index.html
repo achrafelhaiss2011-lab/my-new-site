@@ -197,7 +197,61 @@
     });
     camera.start();
 </script>
+    <div id="ai-assistant" style="position: fixed; bottom: 20px; right: 20px; background: white; border: 2px solid #0070f3; padding: 15px; border-radius: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.2); z-index: 10000; width: 250px; text-align: center;">
+    <p style="margin: 0 0 10px 0; font-weight: bold; color: #0070f3;">المساعد الذكي (صوت)</p>
+    <button id="start-voice" style="background: #0070f3; color: white; border: none; padding: 10px 20px; border-radius: 10px; cursor: pointer;">اضغط للتحدث 🎤</button>
+    <p id="ai-status" style="font-size: 12px; color: #666; margin-top: 10px;">أنا أسمعك الآن...</p>
+</div>
+
+<script>
+    const btn = document.getElementById('start-voice');
+    const status = document.getElementById('ai-status');
+
+    // إعدادات الكلام (النطق)
+    function speak(text) {
+        const synth = window.speechSynthesis;
+        const utter = new SpeechSynthesisUtterance(text);
+        utter.lang = 'ar-SA'; // لغة عربية
+        synth.speak(utter);
+    }
+
+    // إعدادات الاستماع (التعرف على الصوت)
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    const recognition = new SpeechRecognition();
+    recognition.lang = 'ar-SA';
+
+    btn.onclick = () => {
+        recognition.start();
+        status.innerText = "جاري الاستماع... تكلم الآن";
+        btn.style.background = "red";
+    };
+
+    recognition.onresult = (event) => {
+        const userText = event.results[0][0].transcript;
+        status.innerText = "قلت: " + userText;
+        btn.style.background = "#0070f3";
+
+        // منطق الرد الذكي (يمكنك توسيعه)
+        let aiResponse = "أنا معك، كيف يمكنني مساعدتك في دروسك؟";
+
+        if (userText.includes("من أنت")) {
+            aiResponse = "أنا المساعد الذكي الخاص بمنصة أشرف التعليمية، مبرمجي هو البطل أشرف.";
+        } else if (userText.includes("مرحبا")) {
+            aiResponse = "أهلاً بك يا صديقي في منصة أشرف لعام 2026.";
+        } else if (userText.includes("شكرا")) {
+            aiResponse = "العفو، أنا دائماً في خدمتك.";
+        }
+
+        speak(aiResponse);
+    };
+
+    recognition.onerror = () => {
+        status.innerText = "حدث خطأ، حاول مرة أخرى";
+        btn.style.background = "#0070f3";
+    };
+</script>
 </body>
 
 </html>
+
 
