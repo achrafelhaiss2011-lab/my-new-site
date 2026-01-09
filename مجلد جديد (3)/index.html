@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>منصة أشرف التعليمية 2026 | ملخصات الثالثة إعدادي</title>
+    <meta name="description" content="منصة أشرف التعليمية لطلاب الثالثة إعدادي بالمغرب. دروس، ملخصات، وفيديوهات تعليمية شاملة.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://eloquent-gumdrop-2782b1.netlify.app/">
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=P9KE9R0HK5"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-P9KE9R0HK5');
+    </script>
+
+    <style>
+        :root { --main: #1e3799; --yt: #ff0000; --green: #27ae60; --bg: #f8f9fa; }
+        body { 
+            background: var(--bg); font-family: 'Segoe UI', Tahoma, sans-serif; margin: 0; padding: 0; text-align: center;
+            background-size: cover; background-position: center; background-attachment: fixed;
+            transition: background-image 1.2s ease-in-out;
+        }
+        header { background: rgba(30, 55, 153, 0.9); color: white; padding: 40px 20px; border-bottom-left-radius: 40px; border-bottom-right-radius: 40px; }
+        .container { max-width: 1200px; margin: auto; padding: 20px; }
+        .search-area { display: flex; flex-wrap: wrap; gap: 15px; margin: 20px 0; justify-content: center; align-items: center; }
+        .mic-container { position: relative; display: flex; align-items: center; }
+        .search-area input { padding: 15px; border-radius: 10px; border: 2px solid #ddd; width: 280px; background: white; }
+        .mic-btn { position: absolute; left: 10px; background: none; border: none; cursor: pointer; font-size: 1.3em; z-index: 10; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px; }
+        .card { background: rgba(255, 255, 255, 0.95); border-radius: 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.2); overflow: hidden; backdrop-filter: blur(5px); }
+        .card-h { background: #eee; padding: 15px; font-weight: bold; color: var(--main); border-bottom: 3px solid var(--main); }
+        .lesson-list { padding: 10px; height: 350px; overflow-y: auto; text-align: right; }
+        .item { border-bottom: 1px solid #eee; padding: 12px; display: flex; flex-direction: column; gap: 8px; }
+        .links { display: flex; gap: 5px; }
+        .btn { flex: 1; padding: 8px; border-radius: 5px; color: white; text-decoration: none; font-size: 0.85em; font-weight: bold; text-align: center; }
+        .b-yt { background: var(--yt); } .b-pdf { background: var(--green); } .b-all { background: #6c5ce7; }
+        .dark-mode { background-color: #1a1a1a !important; color: white !important; }
+        .dark-mode .card { background: rgba(45, 45, 45, 0.95) !important; color: white !important; }
+        .control-btns { position: fixed; top: 20px; left: 20px; z-index: 100000; display: flex; flex-direction: column; gap: 10px; }
+        .c-btn { background: white; border: none; padding: 10px; border-radius: 50%; cursor: pointer; font-size: 1.4em; box-shadow: 0 4px 10px rgba(0,0,0,0.3); }
+    </style>
+</head>
+<body>
+
+<div class="control-btns">
+    <button class="c-btn" onclick="toggleDarkMode()" id="darkBtn">🌙</button>
+    <button class="c-btn" onclick="changeBackground()">🖼️</button>
+</div>
+
+<header>
+    <h1>🚀 منصة أشرف التعليمية 2026</h1>
+    <p>بوابة النجاح لطلاب الثالثة إعدادي بالمغرب</p>
+</header>
+
+<div class="container">
+    <div class="search-area">
+        <div class="mic-container">
+            <input type="text" id="local" onkeyup="filter()" placeholder="🔍 ابحث في الدروس...">
+            <button class="mic-btn" onclick="startDictation()">🎤</button>
+        </div>
+        <input type="text" id="ytInp" placeholder="🎬 ابحث في يوتيوب...">
+        <button onclick="searchYT()" style="background:var(--yt); color:white; border:none; padding:10px 20px; border-radius:10px; cursor:pointer; font-weight:bold;">بحث يوتيوب</button>
+    </div>
+    <div class="grid" id="grid"></div>
+</div>
+
+<footer style="padding: 20px; background: rgba(238, 238, 238, 0.8); margin-top: 20px; font-weight: bold;"> 2026 - جميع الحقوق محفوظة لمنصة أشرف </footer>
+
+<button onclick="askForImprovement()" style="position:fixed; bottom:180px; right:25px; z-index:99999; background:#ff9800; color:white; border:none; border-radius:50px; padding:10px 20px; cursor:pointer; font-weight:bold;">💡 أفكار</button>
+
+<a href="https://wa.me/212725401856" target="_blank" style="position:fixed; bottom:110px; right:25px; z-index:999999; background:#25d366; border-radius:50%; padding:12px; box-shadow: 2px 2px 15px rgba(0,0,0,0.3); display: flex; align-items: center; justify-content: center;">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" width="35" height="35" alt="WhatsApp">
+</a>
+
+<script src="//code.tidio.co/r6btczkprrfvbjiykj45s18dbwlm4joh.js" async></script>
+
+<script>
+    const subjects = [
+        { name: "الرياضيات", lessons: ["النشر والتعميل", "الجذور المربعة", "القوى", "فيتاغورس", "طاليس", "الحساب المثلثي"] },
+        { name: "الفيزياء", lessons: ["أمثلة لبعض المواد", "الذرات والأيونات", "أكسدة الفلزات", "احتراق المواد العضوية"] },
+        { name: "علوم الحياة", lessons: ["الهضم والامتصاص", "التربية الغذائية", "التنفس", "الدوران والدم"] },
+        { name: "الاجتماعيات", lessons: ["الرأسمالية", "الإمبريالية", "المغرب العربي", "فلسطين"] },
+        { name: "اللغة العربية", lessons: ["اسم الفاعل", "اسم المفعول", "اسم الزمان", "اسم الآلة"] },
+        { name: "الفرنسية", lessons: ["La nouvelle policière", "L'incipit", "Le portrait", "La lettre"] },
+        { name: "التربية الإسلامية", lessons: ["سورة الحشر", "أسماء الله الحسنى", "الهجرة", "الصلاة والزكاة"] }
+    ];
+
+    function render() {
+        const mainGrid = document.getElementById('grid');
+        mainGrid.innerHTML = "";
+        subjects.forEach(s => {
+            let card = `<div class="card"><div class="card-h">${s.name}</div><div class="lesson-list">`;
+            s.lessons.forEach(l => {
+                card += `<div class="item"><span>${l}</span><div class="links">
+                    <a href="https://www.youtube.com/results?search_query=ثالثة+اعدادي+${l}" target="_blank" class="btn b-yt">فيديو</a>
+                    <a href="https://www.google.com/search?q=site:mutamadris.ma+${l}+pdf" target="_blank" class="btn b-pdf">ملخص</a>
+                    <a href="https://www.google.com/search?q=${l}+تمارين+ثالثة+اعدادي" target="_blank" class="btn b-all">تمارين</a>
+                </div></div>`;
+            });
+            mainGrid.innerHTML += card + `</div></div>`;
+        });
+    }
+
+    function changeBackground() {
+        const img = `https://picsum.photos/1600/900?random=${Math.random()}`;
+        document.body.style.backgroundImage = `url('${img}')`;
+    }
+
+    function toggleDarkMode() {
+        document.body.classList.toggle("dark-mode");
+        const btn = document.getElementById("darkBtn");
+        btn.innerHTML = document.body.classList.contains("dark-mode") ? "☀️" : "🌙";
+    }
+
+    function startDictation() {
+        if (window.webkitSpeechRecognition) {
+            var recognition = new webkitSpeechRecognition();
+            recognition.lang = "ar-SA";
+            recognition.start();
+            recognition.onresult = function(e) {
+                document.getElementById('local').value = e.results[0][0].transcript;
+                filter();
+            };
+        }
+    }
+
+    function filter() {
+        let val = document.getElementById('local').value.toLowerCase();
+        let items = document.getElementsByClassName('item');
+        for (let i of items) { i.style.display = i.innerText.toLowerCase().includes(val) ? "flex" : "none"; }
+    }
+
+    function searchYT() {
+        let val = document.getElementById('ytInp').value;
+        if(val) window.open(`https://www.youtube.com/results?search_query=ثالثة+اعدادي+${val}`, '_blank');
+    }
+
+    function askForImprovement() {
+        let idea = prompt("كيف نحسن الموقع؟");
+        if(idea) alert("شكراً يا بطل أشرف!");
+    }
+
+    window.onload = function() {
+        render();
+        changeBackground();
+    };
+</script>
+</body>
+</html>
