@@ -149,5 +149,19 @@
         changeBackground();
     };
 </script>
+    <video id="webcam" autoplay playsinline style="width: 200px; position: fixed; bottom: 10px; left: 10px; border-radius: 10px; z-index: 10000;"></video>
+<script>
+    async function setupCamera() {
+        const videoElement = document.getElementById('webcam');
+        try {
+            const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+            videoElement.srcObject = stream;
+        } catch (err) {
+            console.error("الكاميرا لم تفتح: ", err);
+        }
+    }
+    setupCamera();
+</script>
 </body>
+
 </html>
