@@ -198,62 +198,72 @@
     });
     camera.start();
 </script>
-    <div id="ai-assistant" style="position: fixed; bottom: 20px; right: 20px; background: white; border: 2px solid #0070f3; padding: 15px; border-radius: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.2); z-index: 10000; width: 250px; text-align: center;">
-    <p style="margin: 0 0 10px 0; font-weight: bold; color: #0070f3;">المساعد الذكي (صوت)</p>
-    <button id="start-voice" style="background: #0070f3; color: white; border: none; padding: 10px 20px; border-radius: 10px; cursor: pointer;">اضغط للتحدث 🎤</button>
+ <div id="ai-assistant" style="position: fixed; bottom: 20px; right: 20px; background: white; border: 2px solid #0070f3; padding: 15px; border-radius: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.2); z-index: 10000; width: 250px; text-align: center;">
+    <p style="margin: 0 0 10px 0; font-weight: bold; color: #0070f3;">رفيق أشرف الذكي 🤖</p>
+    <button id="start-voice" style="background: #0070f3; color: white; border: none; padding: 10px 20px; border-radius: 10px; cursor: pointer; font-weight: bold;">اضغط واسألني 🎤</button>
     <p id="ai-status" style="font-size: 12px; color: #666; margin-top: 10px;">أنا أسمعك الآن...</p>
 </div>
 
 <script>
-    const btn = document.getElementById('start-voice');
-    const status = document.getElementById('ai-status');
+    // مفتاحك السري من منصة Groq
+    const GROQ_KEY = "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"; 
 
-    // إعدادات الكلام (النطق)
-    function speak(text) {
+    const vBtn = document.getElementById('start-voice');
+    const vStatus = document.getElementById('ai-status');
+
+    function speakText(txt) {
         const synth = window.speechSynthesis;
-        const utter = new SpeechSynthesisUtterance(text);
-        utter.lang = 'ar-SA'; // لغة عربية
+        const utter = new SpeechSynthesisUtterance(txt);
+        utter.lang = 'ar-SA';
         synth.speak(utter);
     }
 
-    // إعدادات الاستماع (التعرف على الصوت)
-    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-    const recognition = new SpeechRecognition();
-    recognition.lang = 'ar-SA';
+    const SpeechRec = window.SpeechRecognition || window.webkitSpeechRecognition;
+    const recognitionAi = new SpeechRec();
+    recognitionAi.lang = 'ar-SA';
 
-    btn.onclick = () => {
-        recognition.start();
-        status.innerText = "جاري الاستماع... تكلم الآن";
-        btn.style.background = "red";
+    vBtn.onclick = () => {
+        recognitionAi.start();
+        vStatus.innerText = "أسمعك.. تفضل بسؤالك";
+        vBtn.style.background = "#ff9800";
     };
 
-    recognition.onresult = (event) => {
-        const userText = event.results[0][0].transcript;
-        status.innerText = "قلت: " + userText;
-        btn.style.background = "#0070f3";
+    recognitionAi.onresult = async (event) => {
+        const textIn = event.results[0][0].transcript;
+        vStatus.innerText = "أنت قلت: " + textIn;
+        vBtn.style.background = "red";
 
-        // منطق الرد الذكي (يمكنك توسيعه)
-        let aiResponse = "أنا معك، كيف يمكنني مساعدتك في دروسك؟";
+        try {
+            const response = await fetch("https://api.groq.com/openai/v1/chat/completions", {
+                method: "POST",
+                headers: {
+                    "Authorization": `Bearer ${GROQ_KEY}`,
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    model: "gpt-oss-20b", // النموذج الذي اخترته أنت
+                    messages: [
+                        { role: "system", content: "أنت مساعد ذكي في منصة أشرف التعليمية. ساعد طلاب المغرب في دروسهم بذكاء وبساطة." },
+                        { role: "user", content: textIn }
+                    ]
+                })
+            });
 
-        if (userText.includes("من أنت")) {
-            aiResponse = "أنا المساعد الذكي الخاص بمنصة أشرف التعليمية، مبرمجي هو البطل أشرف.";
-        } else if (userText.includes("مرحبا")) {
-            aiResponse = "أهلاً بك يا صديقي في منصة أشرف لعام 2026.";
-        } else if (userText.includes("شكرا")) {
-            aiResponse = "العفو، أنا دائماً في خدمتك.";
+            const result = await response.json();
+            const aiMsg = result.choices[0].message.content;
+            
+            vStatus.innerText = "الروبوت يجيبك..";
+            speakText(aiMsg);
+            vBtn.style.background = "#0070f3";
+
+        } catch (err) {
+            vStatus.innerText = "عذراً، حدث خطأ! جرب ثانية";
+            vBtn.style.background = "#0070f3";
         }
-
-        speak(aiResponse);
-    };
-
-    recognition.onerror = () => {
-        status.innerText = "حدث خطأ، حاول مرة أخرى";
-        btn.style.background = "#0070f3";
     };
 </script>
-</body>
-
 </html>
+
 
 
 
