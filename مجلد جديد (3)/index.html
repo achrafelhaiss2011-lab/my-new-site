@@ -30,7 +30,7 @@
         .search-area input { padding: 15px; border-radius: 10px; border: 2px solid #ddd; width: 280px; background: white; }
         .mic-btn { position: absolute; left: 10px; background: none; border: none; cursor: pointer; font-size: 1.3em; z-index: 10; }
         .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px; }
-        .card { background: rgba(255, 255, 255, 0.95); border-radius: 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.2); overflow: hidden; backdrop-filter: blur(5px); }
+        .card { background: rgba(255, 255, 255, 0.95); border-radius: 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.2); overflow: hidden; backdrop-filter: blur(5px); margin-bottom: 20px; }
         .card-h { background: #eee; padding: 15px; font-weight: bold; color: var(--main); border-bottom: 3px solid var(--main); }
         .lesson-list { padding: 10px; height: 350px; overflow-y: auto; text-align: right; }
         .item { border-bottom: 1px solid #eee; padding: 12px; display: flex; flex-direction: column; gap: 8px; }
@@ -69,12 +69,6 @@
 </div>
 
 <footer style="padding: 20px; background: rgba(238, 238, 238, 0.8); margin-top: 20px; font-weight: bold;"> 2026 - جميع الحقوق محفوظة لمنصة أشرف </footer>
-
-<div id="ai-assistant" style="position: fixed; bottom: 20px; right: 20px; background: white; border: 2px solid #0070f3; padding: 15px; border-radius: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.2); z-index: 10000; width: 250px; text-align: center;">
-    <p style="margin: 0 0 10px 0; font-weight: bold; color: #0070f3;">رفيق أشرف الذكي 🤖</p>
-    <button id="start-voice" style="background: #0070f3; color: white; border: none; padding: 10px 20px; border-radius: 10px; cursor: pointer; font-weight: bold;">اضغط واسألني 🎤</button>
-    <p id="ai-status" style="font-size: 12px; color: #666; margin-top: 10px;">أنا جاهز لمساعدتك</p>
-</div>
 
 <button onclick="askForImprovement()" style="position:fixed; bottom:180px; right:25px; z-index:99999; background:#ff9800; color:white; border:none; border-radius:50px; padding:10px 20px; cursor:pointer; font-weight:bold;">💡 أفكار</button>
 
@@ -117,7 +111,7 @@ const subjects = [
             "مبرهنة فيثاغورس", 
             "الحساب المثلثي (Sin, Cos, Tan)", 
             "مبرهنة طاليس", 
-            "الالزوايا المركزية والمحيطية",
+            "الزوايا المركزية والمحيطية",
             "المثلثات المتشابهة والمتقايسة"
         ] 
     },
@@ -227,7 +221,6 @@ function askForImprovement() {
     if(idea) alert("شكراً يا بطل أشرف!");
 }
 
-// --- نظام الكاميرا ---
 async function setupCamera() {
     const videoElement = document.getElementById('webcam');
     if(!videoElement) return;
@@ -237,12 +230,24 @@ async function setupCamera() {
     } catch (err) { console.warn("الكاميرا لم تفتح"); }
 }
 
-// تشغيل كل الوظائف عند تحميل الصفحة
 window.addEventListener('DOMContentLoaded', () => {
-    render(); // إظهار الدروس فوراً
+    render();
     changeBackground();
     setupCamera();
 });
 </script>
+    <!--Start of Tawk.to Script-->
+<script type="text/javascript">
+var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+(function(){
+var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+s1.async=true;
+s1.src='https://embed.tawk.to/696bbfb321d478197edb9092/1jf6e9lko';
+s1.charset='UTF-8';
+s1.setAttribute('crossorigin','*');
+s0.parentNode.insertBefore(s1,s0);
+})();
+</script>
+<!--End of Tawk.to Script-->
 </body>
 </html>
